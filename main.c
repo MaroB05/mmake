@@ -5,8 +5,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <assert.h>
 
-bool file_exists();
+bool file_exists(char dir_path[], char filename[]);
 bool locate_tag(char command[], FILE stream[], size_t *line);
 
 int main(int argc, char* argv[]){
@@ -20,7 +21,7 @@ int main(int argc, char* argv[]){
     return 1;
   }
 
-  if (!file_exists()){
+  if (!file_exists("./", "Makefile")){
     fputs("No Makefile found\n", stderr);
     return 1;
   }
@@ -45,12 +46,13 @@ int main(int argc, char* argv[]){
   return 0;
 }
 
-bool file_exists(){
-  
-  DIR* current_dir = opendir("./");
+bool file_exists(char dir_path[], char filename[]){
+  assert(dir_path != NULL);
+  assert(filename != NULL);
+  DIR* current_dir = opendir(dir_path);
   struct dirent* entry;
   while((entry = readdir(current_dir))){
-    if (!strcmp(entry->d_name, "Makefile"))
+    if (!strcmp(entry->d_name, filename))
       return 1;
   }
   return 0;
