@@ -16,10 +16,18 @@ int main(int argc, char* argv[]){
   char commands[buff_size];
   size_t line = 0;
   
-  if (argc == 1){
-    fputs("not enough args\n", stderr);
-    return 1;
+  switch (argc) {
+    case 1:
+      fputs("not enough args\n", stderr);
+      return 1;
+    case 3:
+      chdir(argv[2]);
+      break;
+    default:
+      fputs("mmake command [path]\n", stderr);
+      return 1;
   }
+
 
   if (!file_exists("./", "Makefile")){
     fputs("No Makefile found\n", stderr);

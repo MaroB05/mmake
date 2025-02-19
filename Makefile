@@ -3,6 +3,6 @@ hello:
 	echo "another test"
 	eho "file"
 test:
-echo "hi"
+	echo "hi"
 compile:
 	gcc main.c -Wall -o mmake 
