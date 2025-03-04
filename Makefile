@@ -5,4 +5,4 @@ hello:
 test:
 	echo "hi"
 compile:
-	gcc main.c -Wall -o mmake 
+	gcc src/main.c -Wall -o build/mmake 
