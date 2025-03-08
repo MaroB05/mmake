@@ -42,9 +42,10 @@ int main(int argc, char* argv[]){
     fprintf(stderr,"Make: %s command is not found\n", argv[1]);
 
   while(fgets(commands,  buff_size, file) &&
-        commands[strlen(commands)-2] != ':'){
+        !strchr(commands, ':')){
     line++;
-    if (commands[0] != '\t' && commands[0] != '\n'){
+
+    if (strchr(commands, '\t') != commands){
       fprintf(stderr, "[Make]formatting error: %lu\n", line);
       exit(1);
     }
