@@ -45,7 +45,7 @@ int main(int argc, char* argv[]){
         !strchr(commands, ':')){
     line++;
 
-    if (strchr(commands, '\t') != commands){
+    if (strchr(commands, '\t') != commands && commands[0] != '\n'){
       fprintf(stderr, "[Make]formatting error: %lu\n", line);
       exit(1);
     }
