@@ -50,8 +50,10 @@ int main(int argc, char* argv[]){
       exit(1);
     }
 
-    if(system(commands))
-      fputs("Make failed\n", stderr);
+    if(system(commands)){
+      fputs("[Mmake Error] Mmake failed\n", stderr);
+      return -1;
+    }
   }
   
   return 0;
